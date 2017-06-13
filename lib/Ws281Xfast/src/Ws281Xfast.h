@@ -7,11 +7,11 @@ template<LED_TYPE leds_type, std::size_t NUMPIXEL, uint8_t DATAPIN>
 class Ws281Xfast{
 public:
     Ws281Xfast()
-    : dataTrans{ &Ws281Xfast<leds_type,NUMPIXEL,DATAPIN>::dataZero
-                ,&Ws281Xfast<leds_type,NUMPIXEL,DATAPIN>::dataOne
+    : dataTrans{ &Ws281Xfast::dataZero
+                ,&Ws281Xfast::dataOne
                }
-    , dataTransLast{ &Ws281Xfast<leds_type,NUMPIXEL,DATAPIN>::dataZeroLast
-                    ,&Ws281Xfast<leds_type,NUMPIXEL,DATAPIN>::dataOneLast
+    , dataTransLast{ &Ws281Xfast::dataZeroLast
+                    ,&Ws281Xfast::dataOneLast
                }
     {}
 
@@ -23,8 +23,8 @@ public:
         dataClerReg = fastReg.getRagPack(DATAPIN).cppClear;
         dataMask = fastReg.getRagPack(DATAPIN).bMask;
         t32fr_util::changeModeDigitalWrite(DATAPIN,isOpenDrainMode); // OPENDRAIN
-        dataTrans[0] = &Ws281Xfast<leds_type,NUMPIXEL,DATAPIN>::dataZero;
-        dataTrans[1] = &Ws281Xfast<leds_type,NUMPIXEL,DATAPIN>::dataOne;
+        dataTrans[0] = &Ws281Xfast::dataZero;
+        dataTrans[1] = &Ws281Xfast::dataOne;
     }
 
     volatile void show(){
@@ -146,8 +146,8 @@ private:
     volatile uint32_t* dataSetReg;
     volatile uint32_t* dataClerReg;
     uint32_t dataMask;
-    volatile void (Ws281Xfast<leds_type,NUMPIXEL,DATAPIN>::*dataTrans[2])();
-    volatile void (Ws281Xfast<leds_type,NUMPIXEL,DATAPIN>::*dataTransLast[2])();
+    volatile void (Ws281Xfast::*dataTrans[2])();
+    volatile void (Ws281Xfast::*dataTransLast[2])();
 
 };
 #endif /* end of include guard: Ws281XFAST_H */
