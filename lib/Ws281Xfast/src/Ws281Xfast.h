@@ -146,8 +146,8 @@ private:
     volatile uint32_t* dataSetReg;
     volatile uint32_t* dataClerReg;
     uint32_t dataMask;
-    volatile void (Ws281Xfast::*dataTrans[2])();
-    volatile void (Ws281Xfast::*dataTransLast[2])();
+    volatile void (Ws281Xfast::* const dataTrans[2])();
+    volatile void (Ws281Xfast::* const dataTransLast[2])();
 
 };
 #endif /* end of include guard: Ws281XFAST_H */
